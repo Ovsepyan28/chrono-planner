@@ -4,7 +4,7 @@ import dayjs from 'dayjs';
 
 import type { ColumnsType } from 'antd/es/table';
 
-import styles from './index.module.css';
+import styles from './styles.module.css';
 
 interface INotesList {
   notes: Notes;

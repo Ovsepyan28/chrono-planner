@@ -14,7 +14,7 @@ import { hasInNotes } from '@/utils/hasInNotes';
 import { getNearestUnavailable } from '@/utils/getNearestUnavailable';
 import { getSavedNotes } from '@/utils/getSavedNotes';
 
-import styles from './index.module.css';
+import styles from './styles.module.css';
 
 const { RangePicker } = DatePicker;
 
@@ -27,10 +27,6 @@ export const MainPage: React.FC = () => {
   useEffect(() => {
     setNotes(getSavedNotes());
   }, []);
-
-  // useEffect(() => {
-  //
-  // }, [notes]);
 
   const disabledDate: RangePickerProps['disabledDate'] = (cur) => {
     if (selected[0] || selected[1]) {

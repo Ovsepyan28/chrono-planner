@@ -1,6 +1,6 @@
 import { Header } from '../Header';
 
-import styles from './index.module.css';
+import styles from './styles.module.css';
 
 interface ILayoutProps {
   children: React.ReactNode;

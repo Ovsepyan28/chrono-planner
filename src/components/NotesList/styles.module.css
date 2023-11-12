@@ -1,5 +1,5 @@
 .notesList {
-  overflow: auto;
+  overflow-y: auto;
   width: 100%;
 }
 
