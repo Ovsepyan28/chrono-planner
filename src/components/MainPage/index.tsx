@@ -46,7 +46,7 @@ export const MainPage: React.FC = () => {
   const onFinish = (value: FormValue) => {
     const newNote: Note = {
       key: uuidv4(),
-      text: value.text,
+      text: value.text.trim(),
       start: value.dates[0].startOf('d').valueOf(),
       end: value.dates[1].startOf('d').valueOf(),
     };
