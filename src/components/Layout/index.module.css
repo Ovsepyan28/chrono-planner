@@ -1,0 +1,4 @@
+.layout {
+  display: grid;
+  grid-template-rows: 80px calc(100dvh - 80px);
+}

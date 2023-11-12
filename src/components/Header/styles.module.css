@@ -1,0 +1,13 @@
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #1677ff;
+  color: white;
+}
+
+.logo {
+  font-weight: 700;
+  font-size: 32px;
+  user-select: none;
+}
