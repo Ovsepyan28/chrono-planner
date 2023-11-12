@@ -6,3 +6,9 @@
 .text {
   min-width: 300px;
 }
+
+.operations,
+.start,
+.end {
+  min-width: 150px;
+}

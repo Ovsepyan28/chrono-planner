@@ -25,14 +25,18 @@ export const NotesList: React.FC<INotesList> = ({ notes, handleDelete }) => {
       defaultSortOrder: 'ascend',
       sorter: (a, b) => a.start - b.start,
       width: 180,
+      className: styles.start,
       render: (date) => dayjs(date).format('DD.MM.YYYY'),
+      align: 'center',
     },
     {
       title: 'Дата окончания',
       dataIndex: 'end',
       sorter: (a, b) => a.end - b.end,
       width: 180,
+      className: styles.end,
       render: (date) => dayjs(date).format('DD.MM.YYYY'),
+      align: 'center',
     },
     {
       title: 'Операция',
@@ -42,7 +46,8 @@ export const NotesList: React.FC<INotesList> = ({ notes, handleDelete }) => {
           <a>Удалить</a>
         </Popconfirm>
       ),
-      width: 100,
+      width: 180,
+      className: styles.operations,
       align: 'center',
     },
   ];
