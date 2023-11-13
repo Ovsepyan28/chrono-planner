@@ -18,7 +18,7 @@ export const NotesList: React.FC<INotesList> = ({ notes, handleDelete }) => {
       dataIndex: 'text',
       sorter: (a, b) => a.text.localeCompare(b.text),
       className: styles.text,
-      width: 400,
+      width: 300,
     },
     {
       title: 'Дата начала',
@@ -55,7 +55,7 @@ export const NotesList: React.FC<INotesList> = ({ notes, handleDelete }) => {
 
   return (
     <div className={styles.notesList}>
-      <Table columns={columns} dataSource={notes} pagination={false} bordered sticky />
+      <Table columns={columns} dataSource={notes} pagination={false} sticky style={{ tableLayout: 'auto' }} />
     </div>
   );
 };
