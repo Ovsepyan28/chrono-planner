@@ -3,9 +3,9 @@
 import { useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import dayjs from 'dayjs';
-import { Input, DatePicker, Form, Button } from 'antd';
+import { Input, DatePicker, Form, Button, notification } from 'antd';
 
-import type { DateRange, FormValue, Note, Notes } from '@/types';
+import type { DateRange, FormValue, Note, Notes, NotificationType } from '@/types';
 import type { RangePickerProps } from 'antd/es/date-picker';
 
 import { NotesList } from '../NotesList';
@@ -15,6 +15,7 @@ import { getNearestUnavailable } from '@/utils/getNearestUnavailable';
 import { getSavedNotes } from '@/utils/getSavedNotes';
 
 import styles from './styles.module.css';
+import { NotificationPlacement } from 'antd/es/notification/interface';
 
 const { RangePicker } = DatePicker;
 
@@ -22,6 +23,7 @@ export const MainPage: React.FC = () => {
   const [selected, setSelected] = useState<DateRange>([null, null]);
   const [limits, setLimits] = useState<DateRange>([null, null]);
   const [notes, setNotes] = useState<Notes>([]);
+  const [api, contextHolder] = notification.useNotification();
   const [form] = Form.useForm();
 
   useEffect(() => {
@@ -54,6 +56,7 @@ export const MainPage: React.FC = () => {
       localStorage.setItem('notes', JSON.stringify(notes));
       return notes;
     });
+    openNotificationWithIcon('success', 'bottomLeft');
     form.resetFields();
   };
 
@@ -70,10 +73,19 @@ export const MainPage: React.FC = () => {
       localStorage.setItem('notes', JSON.stringify(notes));
       return notes;
     });
+    openNotificationWithIcon('error', 'bottomLeft');
+  };
+
+  const openNotificationWithIcon = (type: NotificationType, placement: NotificationPlacement) => {
+    api[type]({
+      message: type === 'error' ? 'Запись удалена!' : 'Запись создана',
+      placement,
+    });
   };
 
   return (
     <div className={styles.mainPage}>
+      {contextHolder}
       <div className={styles.sider}>
         <Form onFinish={onFinish} form={form} layout="vertical">
           <Form.Item
@@ -98,7 +110,7 @@ export const MainPage: React.FC = () => {
           </Form.Item>
           <Form.Item>
             <Button type="primary" htmlType="submit" className={styles.submit}>
-              Добавить запись
+              Добавить занятие
             </Button>
           </Form.Item>
         </Form>

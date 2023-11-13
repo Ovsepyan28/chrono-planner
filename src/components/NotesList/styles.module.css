@@ -1,10 +1,10 @@
 .notesList {
   overflow-y: auto;
-  width: 100%;
 }
 
 .text {
   min-width: 300px;
+  max-width: 500px;
 }
 
 .operations,

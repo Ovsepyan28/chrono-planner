@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import { Roboto } from 'next/font/google';
+import { ConfigProvider } from 'antd';
+import ru_RU from 'antd/locale/ru_RU';
 
 import { Layout } from '@/components/Layout';
 import AntdStyledComponentsRegistry from '@/components/AntdStyledComponentsRegistry';
@@ -22,9 +24,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="ru">
       <body className={roboto.className} suppressHydrationWarning={true}>
-        <AntdStyledComponentsRegistry>
-          <Layout>{children}</Layout>
-        </AntdStyledComponentsRegistry>
+        <ConfigProvider locale={ru_RU}>
+          <AntdStyledComponentsRegistry>
+            <Layout>{children}</Layout>
+          </AntdStyledComponentsRegistry>
+        </ConfigProvider>
       </body>
     </html>
   );

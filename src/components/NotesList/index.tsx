@@ -14,17 +14,18 @@ interface INotesList {
 export const NotesList: React.FC<INotesList> = ({ notes, handleDelete }) => {
   const columns: ColumnsType<Note> = [
     {
-      title: 'Занятие',
+      title: `Занятие ${notes.length ? `(${notes.length} шт.)` : ''}`,
       dataIndex: 'text',
       sorter: (a, b) => a.text.localeCompare(b.text),
       className: styles.text,
+      width: 400,
     },
     {
       title: 'Дата начала',
       dataIndex: 'start',
       defaultSortOrder: 'ascend',
       sorter: (a, b) => a.start - b.start,
-      width: 180,
+      width: 150,
       className: styles.start,
       render: (date) => dayjs(date).format('DD.MM.YYYY'),
       align: 'center',
@@ -33,7 +34,7 @@ export const NotesList: React.FC<INotesList> = ({ notes, handleDelete }) => {
       title: 'Дата окончания',
       dataIndex: 'end',
       sorter: (a, b) => a.end - b.end,
-      width: 180,
+      width: 150,
       className: styles.end,
       render: (date) => dayjs(date).format('DD.MM.YYYY'),
       align: 'center',
@@ -46,7 +47,7 @@ export const NotesList: React.FC<INotesList> = ({ notes, handleDelete }) => {
           <a>Удалить</a>
         </Popconfirm>
       ),
-      width: 180,
+      width: 150,
       className: styles.operations,
       align: 'center',
     },
@@ -54,7 +55,7 @@ export const NotesList: React.FC<INotesList> = ({ notes, handleDelete }) => {
 
   return (
     <div className={styles.notesList}>
-      <Table columns={columns} dataSource={notes} pagination={false} bordered />
+      <Table columns={columns} dataSource={notes} pagination={false} bordered sticky />
     </div>
   );
 };
